@@ -1,0 +1,180 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Base resets ─────────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Prevent horizontal overflow on mobile */
+  overflow-x: hidden;
+  /* Ensure viewport covers all screen sizes */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  overflow-x: hidden;
+  min-height: 100dvh; /* Dynamic viewport height — works on mobile browsers */
+}
+
+/* ─── Scrollbar Styling ───────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.03);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+/* Mobile: hide scrollbars but keep scrolling */
+@media (max-width: 767px) {
+  ::-webkit-scrollbar { display: none; }
+  * { scrollbar-width: none; }
+}
+
+/* ─── Touch / Tap Targets (WCAG 2.5.5) ───────────────────────────────────── */
+button, a, [role="button"] {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Minimum 44×44px touch targets on mobile */
+@media (max-width: 767px) {
+  button, a[role="button"] {
+    min-height: 44px;
+  }
+}
+
+/* ─── Focus Styles ─────────────────────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid #d4a574;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ─── Component Library ─────────────────────────────────────────────────────── */
+@layer components {
+  /* Glass surface */
+  .glass {
+    @apply bg-graphite-800/40 backdrop-blur-md border border-graphite-700/30;
+  }
+
+  /* Base card — responsive padding */
+  .card-base {
+    @apply bg-graphite-800 border border-graphite-700 rounded-xl;
+  }
+
+  /* Transaction list item */
+  .transaction-item {
+    @apply px-3 sm:px-4 py-3 border-b border-graphite-700/50 last:border-b-0 hover:bg-graphite-700/20 transition-colors;
+  }
+
+  /* Buttons — responsive hit areas */
+  .btn-primary {
+    @apply px-3 sm:px-4 py-2 bg-accent text-graphite-950 rounded-lg font-semibold
+           hover:bg-accent/90 active:scale-95 transition-all
+           text-sm select-none cursor-pointer;
+  }
+
+  .btn-secondary {
+    @apply px-3 sm:px-4 py-2 border border-graphite-600 rounded-lg font-semibold
+           hover:bg-graphite-700/30 active:scale-95 transition-all
+           text-sm select-none cursor-pointer;
+  }
+
+  /* Typography — fluid scale */
+  .heading-lg {
+    @apply text-2xl sm:text-3xl font-bold tracking-tight text-ivory-50;
+  }
+
+  .heading-md {
+    @apply text-xl sm:text-2xl font-bold text-ivory-50;
+  }
+
+  .heading-sm {
+    @apply text-base sm:text-lg font-semibold text-ivory-100;
+  }
+
+  .text-muted {
+    @apply text-graphite-400;
+  }
+
+  .divider {
+    @apply h-px bg-gradient-to-r from-graphite-700/0 via-graphite-700/50 to-graphite-700/0;
+  }
+
+  /* Safe-area padding for notched phones (iOS / Android) */
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  .safe-top {
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+}
+
+/* ─── Animations ────────────────────────────────────────────────────────────── */
+@keyframes animate-fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fadeIn {
+  animation: animate-fadeIn 0.2s ease-out;
+}
+
+/* ─── Print Styles ─────────────────────────────────────────────────────────── */
+@media print {
+  body, html {
+    background: #ffffff !important;
+    color: #000000 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  .no-print,
+  aside,
+  header,
+  nav,
+  .toast-container {
+    display: none !important;
+  }
+
+  .print-only-container {
+    border: 1px solid #e5e7eb !important;
+    box-shadow: none !important;
+    background: #ffffff !important;
+    color: #111827 !important;
+    margin: 0 auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    border-radius: 0 !important;
+  }
+
+  .print-only-container * {
+    color: #111827 !important;
+    background-color: transparent !important;
+    border-color: #e5e7eb !important;
+  }
+
+  .text-accent {
+    color: #d97706 !important;
+  }
+
+  .text-green-400 {
+    color: #16a34a !important;
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "id": "com.plateflow.pos.app",
+  "name": "PlateFlow • Restaurant Billing Operations",
+  "short_name": "PlateFlow",
+  "description": "High-performance restaurant billing and plate control operations dashboard.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#1a1714",
+  "theme_color": "#1a1714",
+  "categories": ["business", "finance", "productivity", "utilities"],
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ]
+}
